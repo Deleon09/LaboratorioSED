@@ -5,6 +5,6 @@ router.get("/", getAll);
 router.get("/all", getAllThings);
 router.post('/create', create);
 router.delete('/delete', deleteT);
-router.post('/updateproduct', update);
+router.post('/update', update);
 
 module.exports = router;

@@ -69,17 +69,12 @@ var ThingsController = {
     },
 
     getAllThings: async (req, res) => {
-        try{
-            const things = await Things.find();
+        Things.find({}, (err, result) => {
+            if(err)
+                res.send(err);
             
-            return res.status(200).json({
-                things
-            });
-        }
-        catch(err){
-            console.log(err);
-            return res.status(400).json(err);
-        }
+            res.send(result);
+        })
     }
 };
 

@@ -1,0 +1,250 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 10vh;
+    background: #3c2846;
+    flex-direction: row;
+}
+
+.ButtonBody {
+    position: relative;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.5);
+    margin: 40px; 
+    transition: 1s;
+    text-decoration: none;
+    overflow: hidden;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, #0004);
+}
+
+.ButtonBody:hover{
+    background: #00ccff;
+    box-shadow: 0 0 10px #00ccff,
+    0 0 30px #00ccff,
+    0 0 60px #00ccff,
+    0 0 100px #00ccff;
+}
+
+/*Cut the next if you only want button ilumination*/
+.ButtonBody::before{
+    content: '';
+    position: absolute;
+    width: 40px; 
+    height: 400%; 
+    background: #00ccff;  
+    transition: 1s; 
+    animation: animate 2s linear infinite; 
+    animation-delay:  calc(0.33s * 0);
+}
+
+.ButtonBody:hover::before {
+    width: 120%;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.ButtonBody::after {
+    content: ''; 
+    position: absolute;
+    inset: 4px; 
+    background: #0e1538;
+    transition: 0.5s;
+}
+
+.ButtonBody:hover::after {
+    background: #00ccff;
+}
+
+.ButtonBody .ButtonContent {
+    position: relative;
+    z-index: 1; 
+    font-size: 2em;  
+    color: #fff; 
+    opacity: 0.5; 
+    text-transform: uppercase;
+    letter-spacing: 4px;    
+    transition: 0.5s;
+}
+
+.ButtonBody:hover .ButtonContent {
+    opacity: 1;
+}
+
+.iBox {
+    width: 200px;
+    margin-top: 40px;
+    margin-right: 10px;
+}
+
+.iBox input {
+    width: 100%;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+} 
+
+/* Card style */
+.serviceWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    background: #3f3752;
+}
+
+.Servicecontainer {
+    position: relative;
+    width: 1200px; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
+
+.Servicecontainer .serviceBox {
+    position: relative;
+    width: 350px; 
+    height: 280px;
+    background: #51446e;
+    border-radius: 20px; 
+    overflow: hidden;
+}
+
+.Servicecontainer .serviceBox .serviceIcon {
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: var(--i);  
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition-delay: 0.25s;
+}
+
+.Servicecontainer .serviceBox:hover .serviceIcon {
+    top: 30px;
+    left: calc(50% - 40px);
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%;  
+    transition-delay: 0s;
+}
+
+.Servicecontainer .serviceBox .serviceIcon ion-icon {
+    font-size: 5em; 
+    color: #fff; 
+    transition: 0.5s;
+    transition-delay: 0s;
+}
+
+.Servicecontainer .serviceBox:hover .serviceIcon ion-icon {
+    font-size: 2em;  
+    transition-delay: 0s;
+}
+
+.Servicecontainer .serviceBox .serviceContent {
+    position: relative;
+    padding: 20px;
+    color: #fff;  
+    text-align: center;
+    margin-top: 100px;
+    z-index: 1; 
+    transform: scale(0);
+    transition: 0.5s;
+    transition-delay: 0s;
+}
+
+.Servicecontainer .serviceBox:hover .serviceContent {
+    transform: scale(1);
+    transition-delay: 0.25s;
+}
+
+.Servicecontainer .serviceBox .serviceContent h2 {
+    margin-top: 10px; 
+    margin-bottom: 5px; 
+}
+
+.Servicecontainer .serviceBox .serviceContent p {
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+.btn-editar {
+    background: greenyellow;
+    margin-left: 3px;
+    border-radius: 5px;
+}
+
+.btn-editar:hover {
+    cursor: pointer;
+    background: green;
+    color: white;
+}
+
+.btn-eliminar {
+    margin-top: 10px;
+    background: red;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.btn-eliminar:hover {
+    cursor: pointer;
+    background: #bd001f;
+} 
+
+/* Making it responsive */
+@media screen and (max-width: 415px){
+
+    .Servicecontainer {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .Servicecontainer .serviceBox {
+        width: 300px;
+        height: 260px;
+    }
+
+    .Servicecontainer .serviceBox .serviceContent h2 {
+        margin-top: 5px; 
+        margin-bottom: 5px; 
+    }
+    
+}
+
+@media screen and (max-width: 770px){
+    .Servicecontainer {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
