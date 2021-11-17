@@ -23,7 +23,7 @@ var ThingsController = {
     deleteT: async (req, res) => {
         try {
             var supr = await Things.findOneAndDelete({
-              _id: req.body._id
+              _id: req.body.idE
             });
   
             return res.status(200).json({ obj: supr });
@@ -34,14 +34,18 @@ var ThingsController = {
     },
 
     update: async(req, res) => {
+        const newThing = req.body.newName;
+        const id = req.body.idN;
+
         try{
-           var upt = await Things.updateOne({name: req.body.name},
-              {name: req.body.newName});
-  
-              return res.status(200).json({ obj: upt });
+           await Things.findById(id, (err, updatedThing) => {
+                updatedThing.name = newThing;
+                updatedThing.save();
+                res.send("update");
+           });
   
         } catch(err){
-              return res.status(400).json(err);
+              console.log(err);
         }
     },
 

@@ -7,17 +7,32 @@ const TodoList = () => {
     const [thing, setThing] = useState('');
     const [thingsList, setThingsList] = useState([]);
 
+    const [newThing, setNewThing] = useState('');
+
     useEffect(() => {
-        Axios.get('http://localhost:5013/things/all').then((response) => {
+        Axios.get('http://localhost:5015/things/all').then((response) => {
             setThingsList(response.data);
         })
     }, [])
 
     const addToList = () => {
-        Axios.post("http://localhost:5013/things/create", {
+        Axios.post("http://localhost:5015/things/create", {
             name: thing,
         })
     }
+
+    const updateThing = (id) => {
+        Axios.post("http://localhost:5015/things/update", {
+            idN: id,
+            newName: newThing,
+        })
+    }
+
+    const deleteThing = (id) => {
+        Axios.delete("http://localhost:5015/things/delete", {
+            idE: id,
+        })
+    };
 
     return (
         <>
@@ -45,10 +60,15 @@ const TodoList = () => {
                                 </div>
                                 <div className="serviceContent">
                                     <h2>{thing.name}</h2>
-                                    <input type="text" placeholder="New Value" />
-                                    <button className="btn-editar" >Editar</button>
+                                    <input 
+                                        onChange = {(event) => {
+                                            setNewThing(event.target.value);
+                                        }} 
+                                        type="text" 
+                                        placeholder="New Value" />
+                                    <button className="btn-editar" onClick={() => updateThing(thing._id)} >Editar</button>
                                     <br></br>
-                                    <button className="btn-eliminar"><ion-icon name="trash-outline"></ion-icon></button>
+                                    <button className="btn-eliminar" onClick={() => deleteThing(thing._id)} ><ion-icon name="trash-outline"></ion-icon></button>
                                 </div>
                             </div>
                         ); 
